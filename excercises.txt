@@ -1,0 +1,42 @@
+EX1
+source data/import-table-structure.sql
+
+EX2
+describe Account;
+insert into Account (`email`, `createdOn`, `modifiedOn`) VALUES('dan@mail.ca', '2015/11/11', '2016,1,16');
+insert into AddressBook (`name`, `createdOn`, `modifiedOn`) VALUES('dan Mcauley', '2015/11/11', '2016,1,16');
+insert into Entry (`firstName`, `lastName`, `birthday`, `type`, `subtype`, `contentLineOne`) VALUES('Dan','mcauley','1901/11/23','home','phone','613-226-2338'),('T','mcauley','1933/12/5','home','phone','613-256-2338'),('Jorge','mcauley','1991/4/23','home','phone','613-226-3238');
+
+EX3
+select * from Account;
+select * from AddressBook;
+select * from Entry;
+
+EX4
+UPDATE Account SET password='wordpass' where id=1;
+UPDATE AddressBook SET accountId='32' where id=1;
+UPDATE Entry SET contentLineTwo='Mcauley Clan' where lastName='mcauley';
+
+EX5:
+truncate table Account;
+
+EX6
+drop table Account;
+
+EX7
+source data/import-table-structure.sql;
+source data/import-account.sql;
+source data/import-addressbook.sql;
+source data/import-entry.sql;
+
+EX8
+select `email` from Account where id=63;
+select `name` from AddressBook where accountId=3;
+select `createdOn` from AddressBook where name='Lorem Foundation';
+
+EX9
+select count(*) from Account;
+select count(*) from AddressBook;
+select count(*) from Entry;
+
+
