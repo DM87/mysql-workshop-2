@@ -39,4 +39,37 @@ select count(*) from Account;
 select count(*) from AddressBook;
 select count(*) from Entry;
 
+EX10
+select count(*) from Entry where birthday < '1982/02/12';
+select count(*) from Entry where birthday >= '1965/01/01';
+select min(birthday),firstName,lastName from Entry;
+
+EX11
+select count(*) from Entry where type!='other';
+select count(*) from Entry where type in ('home', 'work');
+select count(*) from Entry where subtype='phone';
+
+EX12
+mysql> select name, accountId, count(accountId) from AddressBook group by accountId order by count(accountId) desc limit 5;
+mysql> select firstName, lastName, count(addressBookId) from Entry group by addressBookId order by count(addressBookId) desc limit 5;
+
+EX13
+select * from Entry where homecontentLineOne Like '(3%';
+select * from Entry where type='home' and subtype='phone' and contentLineOne not like '%5%';
+select * from Entry where type='work' and subtype='phone' and contentLineOne like '_-%';
+
+EX14
+create database Store;
+use Store;
+create table Inventory (id INT primary key auto_increment, productType enum('computer','smartphone','notebook','tablet'), inventoryLevel int, manufacturer enum('apple','dell','hp','acer','sony','samsung','asus'), product VARCHAR(255), costInCents INT, salePriceInCents INT);
+create table Customers (id INT primary key auto_increment, name VARCHAR(255), location enum('canada','United States'));
+create table Invoices (id INT primary key auto_increment, transactionType enum('sale','refund'), date DATETIME, inventoryId Int);
+alter table Invoices modify column transactionType enum('sale','refund','restock');
+alter table Invoices add location enum('canada','usa');
+alter table Customers drop column location;
+
+
+
+
+
 
